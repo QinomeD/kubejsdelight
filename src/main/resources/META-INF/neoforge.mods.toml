@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="GNU LGPL 3.0"
+
+[[mods]]
+modId="kubejsdelight"
+version="${version}"
+displayName="KubeJSDelight"
+authors="QinomeD, Bob Varioa"
+description='''
+FD integration for KubeJS
+'''
+
+[[dependencies.kubejsdelight]]
+modId="kubejs"
+mandatory=true
+versionRange="[${kubejs_version},)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.kubejsdelight]]
+modId="farmersdelight"
+mandatory=true
+versionRange="[${fd_version},)"
+ordering="AFTER"
+side="BOTH"

@@ -9,7 +9,7 @@ public class PieBlockBuilder extends BlockBuilder {
 
     public PieBlockBuilder(ResourceLocation i) {
         super(i);
-        sliceItem = new ResourceLocation("minecraft:air");
+        sliceItem = ResourceLocation.parse("minecraft:air");
     }
 
     public PieBlockBuilder sliceItem(ResourceLocation s) {

@@ -1,1 +1,1 @@
-qinomed.kubejsdelight.KubeJSDelightPlugin
+qinomed.kubejsdelight.KubeJSDelightPlugin farmersdelight

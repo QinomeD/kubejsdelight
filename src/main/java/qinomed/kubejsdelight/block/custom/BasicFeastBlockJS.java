@@ -4,6 +4,7 @@ import dev.latvian.mods.kubejs.block.BlockBuilder;
 import dev.latvian.mods.kubejs.block.KubeJSBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import vectorwing.farmersdelight.common.block.FeastBlock;
 
 import java.util.Collections;
@@ -27,7 +27,7 @@ public class BasicFeastBlockJS extends FeastBlock {
     public VoxelShape shape;
 
     public BasicFeastBlockJS(FeastBlockBuilder builder, int servings, List<ResourceLocation> servingsList) {
-        super(builder.createProperties(), () -> ForgeRegistries.ITEMS.getValue(builder.servingsList.get(0)), builder.hasLeftovers);
+        super(builder.createProperties(), () -> BuiltInRegistries.ITEM.get(builder.servingsList.get(0)), builder.hasLeftovers);
         this.servings = servings;
         this.servingsList = servingsList;
         shape = BlockBuilder.createShape(builder.customShape);
@@ -72,8 +72,8 @@ public class BasicFeastBlockJS extends FeastBlock {
     public ItemStack getServingItem(BlockState state) {
         int serving = this.getMaxServings() - state.getValue(this.getServingsProperty());
         if (serving > this.servingsList.size() - 1)
-            return new ItemStack(ForgeRegistries.ITEMS.getValue(this.servingsList.get(this.servingsList.size()-1)));
+            return new ItemStack(BuiltInRegistries.ITEM.get(this.servingsList.get(this.servingsList.size()-1)));
         else
-            return new ItemStack(ForgeRegistries.ITEMS.getValue(this.servingsList.get(serving)));
+            return new ItemStack(BuiltInRegistries.ITEM.get(this.servingsList.get(serving)));
     }
 }

@@ -1,20 +1,23 @@
 package qinomed.kubejsdelight.recipe;
 
-import dev.latvian.mods.kubejs.item.InputItem;
-import dev.latvian.mods.kubejs.item.ItemStackJS;
-import dev.latvian.mods.kubejs.item.OutputItem;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
-import dev.latvian.mods.kubejs.recipe.component.ItemComponents;
+import dev.latvian.mods.kubejs.recipe.component.IngredientComponent;
+import dev.latvian.mods.kubejs.recipe.component.ItemStackComponent;
 import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.component.TimeComponent;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
+import dev.latvian.mods.kubejs.util.TickDuration;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+
+import java.util.List;
 
 public interface CookingRecipeJS {
-    RecipeKey<InputItem[]> INGREDIENTS = ItemComponents.INPUT.asArray().key("ingredients");
-    RecipeKey<OutputItem> ITEM = ItemComponents.OUTPUT.key("result");
-    RecipeKey<InputItem> CONTAINER = ItemComponents.INPUT.key("container").optional(InputItem.EMPTY).allowEmpty();
-    RecipeKey<Integer> EXPERIENCE = NumberComponent.INT.key("experience").alt("exp", "xp");
-    RecipeKey<Long> TIME = TimeComponent.TICKS.key("cookingtime").alt("time");
+    RecipeKey<List<Ingredient>> INGREDIENTS = IngredientComponent.INGREDIENT.asList().inputKey("ingredients");
+    RecipeKey<ItemStack> RESULT = ItemStackComponent.ITEM_STACK.outputKey("result");
+    RecipeKey<ItemStack> CONTAINER = ItemStackComponent.ITEM_STACK.inputKey("container").defaultOptional();
+    RecipeKey<Integer> EXPERIENCE = NumberComponent.INT.otherKey("experience").alt("exp", "xp").optional(0);
+    RecipeKey<TickDuration> TIME = TimeComponent.TICKS.otherKey("cookingtime").alt("time").optional(TickDuration.ZERO);
 
-    RecipeSchema SCHEMA = new RecipeSchema(INGREDIENTS, ITEM, EXPERIENCE, TIME, CONTAINER);
+    RecipeSchema SCHEMA = new RecipeSchema(INGREDIENTS, RESULT, CONTAINER, EXPERIENCE, TIME);
 }

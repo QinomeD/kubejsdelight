@@ -17,7 +17,7 @@ public class FeastBlockBuilder extends BlockBuilder {
 
     public FeastBlockBuilder(ResourceLocation i) {
         super(i);
-        this.servingsList = List.of(new ResourceLocation("minecraft:air"));
+        this.servingsList = List.of(ResourceLocation.parse("minecraft:air"));
         this.servings = 4;
         this.hasLeftovers = false;
         blockStateProperties.add(FeastBlock.FACING);
