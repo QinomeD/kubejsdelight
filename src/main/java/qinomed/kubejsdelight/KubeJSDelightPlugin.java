@@ -1,6 +1,7 @@
 package qinomed.kubejsdelight;
 
 import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
+import dev.latvian.mods.kubejs.recipe.schema.RecipeComponentFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
 import dev.latvian.mods.kubejs.registry.BuilderTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -10,6 +11,8 @@ import qinomed.kubejsdelight.item.custom.KnifeItemBuilder;
 import qinomed.kubejsdelight.block.custom.PieBlockBuilder;
 import qinomed.kubejsdelight.recipe.CookingRecipeJS;
 import qinomed.kubejsdelight.recipe.CuttingRecipeJS;
+import qinomed.kubejsdelight.recipe.component.ChanceResultComponent;
+import qinomed.kubejsdelight.recipe.component.SoundEventComponent;
 
 public class KubeJSDelightPlugin implements KubeJSPlugin {
     @Override
@@ -28,5 +31,11 @@ public class KubeJSDelightPlugin implements KubeJSPlugin {
         registry.of(Registries.ITEM, reg -> {
             reg.add("farmersdelight:knife", KnifeItemBuilder.class, KnifeItemBuilder::new);
         });
+    }
+
+    @Override
+    public void registerRecipeComponents(RecipeComponentFactoryRegistry registry) {
+        registry.register(ChanceResultComponent.RESULT);
+        registry.register(SoundEventComponent.SOUND);
     }
 }
