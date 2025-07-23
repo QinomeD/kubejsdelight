@@ -4,6 +4,8 @@ import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeComponentFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
 import dev.latvian.mods.kubejs.registry.BuilderTypeRegistry;
+import dev.latvian.mods.kubejs.script.BindingRegistry;
+import dev.latvian.mods.kubejs.script.TypeWrapperRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import qinomed.kubejsdelight.block.custom.FeastBlockBuilder;
@@ -13,6 +15,8 @@ import qinomed.kubejsdelight.recipe.CookingRecipeJS;
 import qinomed.kubejsdelight.recipe.CuttingRecipeJS;
 import qinomed.kubejsdelight.recipe.component.ChanceResultComponent;
 import qinomed.kubejsdelight.recipe.component.SoundEventComponent;
+import qinomed.kubejsdelight.recipe.wrapper.ChanceResultWrapper;
+import vectorwing.farmersdelight.common.crafting.ingredient.ChanceResult;
 
 public class KubeJSDelightPlugin implements KubeJSPlugin {
     @Override
@@ -37,5 +41,15 @@ public class KubeJSDelightPlugin implements KubeJSPlugin {
     public void registerRecipeComponents(RecipeComponentFactoryRegistry registry) {
         registry.register(ChanceResultComponent.RESULT);
         registry.register(SoundEventComponent.SOUND);
+    }
+
+    @Override
+    public void registerBindings(BindingRegistry bindings) {
+        bindings.add("ChanceResult", ChanceResultWrapper.class);
+    }
+
+    @Override
+    public void registerTypeWrappers(TypeWrapperRegistry registry) {
+        registry.register(ChanceResult.class, ChanceResultWrapper::wrap);
     }
 }
