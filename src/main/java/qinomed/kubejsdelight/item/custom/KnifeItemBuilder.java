@@ -14,6 +14,6 @@ public class KnifeItemBuilder extends HandheldItemBuilder {
 
     @Override
     public Item createObject() {
-        return new KnifeItem(toolTier, createItemProperties());
+        return new KnifeItem(toolTier, createItemProperties().attributes(KnifeItem.createAttributes(toolTier, 0.5f, -2f)));
     }
 }
