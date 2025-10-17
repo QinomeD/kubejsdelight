@@ -12,10 +12,10 @@ import vectorwing.farmersdelight.common.crafting.ingredient.ChanceResult;
 import java.util.List;
 
 public interface CuttingRecipeJS {
-    RecipeKey<List<Ingredient>> INPUT = IngredientComponent.NON_EMPTY_INGREDIENT.asList().inputKey("ingredients");
+    RecipeKey<List<Ingredient>> INPUT = IngredientComponent.INGREDIENT.instance().asList().inputKey("ingredients");
     RecipeKey<Ingredient> TOOL = IngredientComponent.INGREDIENT.inputKey("tool");
-    RecipeKey<List<ChanceResult>> RESULTS = ChanceResultComponent.RESULT.asList().outputKey("result");
-    RecipeKey<SoundEvent> SOUND = SoundEventComponent.SOUND.otherKey("sound").defaultOptional().allowEmpty();
+    RecipeKey<List<ChanceResult>> RESULTS = ChanceResultComponent.CHANCE_RESULT.instance().asList().outputKey("result");
+    RecipeKey<SoundEvent> SOUND = SoundEventComponent.SOUND.otherKey("sound").defaultOptional();
 
     RecipeSchema SCHEMA = new RecipeSchema(INPUT, TOOL, RESULTS, SOUND);
 }

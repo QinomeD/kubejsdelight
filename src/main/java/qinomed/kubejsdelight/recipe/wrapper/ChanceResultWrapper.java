@@ -1,7 +1,7 @@
 package qinomed.kubejsdelight.recipe.wrapper;
 
-import dev.latvian.mods.kubejs.item.ItemStackJS;
-import dev.latvian.mods.kubejs.util.RegistryAccessContainer;
+import dev.latvian.mods.kubejs.plugin.builtin.wrapper.ItemWrapper;
+import dev.latvian.mods.rhino.Context;
 import dev.latvian.mods.rhino.Wrapper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -18,7 +18,7 @@ public interface ChanceResultWrapper {
         return new ChanceResult(stack, chance);
     }
 
-    static ChanceResult wrap(RegistryAccessContainer registries, @Nullable Object o) {
+    static ChanceResult wrap(Context context, @Nullable Object o) {
         while (o instanceof Wrapper w) {
             o = w.unwrap();
         }
@@ -27,6 +27,6 @@ public interface ChanceResultWrapper {
             return new ChanceResult(ItemStack.EMPTY, 0);
         }
 
-        return new ChanceResult(ItemStackJS.wrap(registries, o), 1);
+        return new ChanceResult(ItemWrapper.wrap(context, o), 1);
     }
 }

@@ -9,11 +9,12 @@ import vectorwing.farmersdelight.common.tag.ModTags;
 public class KnifeItemBuilder extends HandheldItemBuilder {
     public KnifeItemBuilder(ResourceLocation i) {
         super(i, 0.5f, -2f);
+        itemAttributeModifiers = KnifeItem.createAttributes(toolTier, attackDamageBaseline, speedBaseline);
         tag(new ResourceLocation[] { ModTags.KNIVES.location(), ResourceLocation.parse("c:tools/knife")});
     }
 
     @Override
     public Item createObject() {
-        return new KnifeItem(toolTier, createItemProperties().attributes(KnifeItem.createAttributes(toolTier, 0.5f, -2f)));
+        return new KnifeItem(toolTier, createItemProperties());
     }
 }
