@@ -6,14 +6,21 @@ import net.minecraft.world.level.block.Block;
 
 public class PieBlockBuilder extends BlockBuilder {
     public transient ResourceLocation sliceItem;
+    public transient int bites;
 
     public PieBlockBuilder(ResourceLocation i) {
         super(i);
         sliceItem = new ResourceLocation("minecraft:air");
+        bites = 4;
     }
 
     public PieBlockBuilder sliceItem(ResourceLocation s) {
         this.sliceItem = s;
+        return this;
+    }
+
+    public PieBlockBuilder bites(int i) {
+        this.bites = i;
         return this;
     }
 
