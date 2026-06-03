@@ -10,7 +10,7 @@ public class KnifeItemBuilder extends HandheldItemBuilder {
     public KnifeItemBuilder(ResourceLocation i) {
         super(i, 0.5f, -2f);
         itemAttributeModifiers = KnifeItem.createAttributes(toolTier, attackDamageBaseline, speedBaseline);
-        tag(new ResourceLocation[] { ModTags.KNIVES.location(), ResourceLocation.parse("c:tools/knife")});
+        tag(new ResourceLocation[] { ModTags.Items.KNIVES.location(), ResourceLocation.parse("c:tools/knife")});
     }
 
     @Override

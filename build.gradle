@@ -7,7 +7,7 @@ plugins {
 
 ext.ENV = System.getenv()
 
-version = "1.1.5"
+version = "1.1.6"
 group = "qinomed"
 base.archivesBaseName = "kubejsdelight"
 
